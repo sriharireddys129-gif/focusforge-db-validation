@@ -1,25 +1,16 @@
-# Observations
+# Database-Level Validation — Observations
 
-## Issues Found
+## 1. Missing Task Title
+The database rejected the insertion because the task title was NULL. This confirms that the `NOT NULL` constraint on `tasks.title` works correctly.
 
-List the problems discovered when running invalid_data.sql.
+## 2. Duplicate Email
+The database rejected the insertion because the email address already existed. This confirms that the `UNIQUE` constraint on `users.email` works correctly.
 
-Example:
-- Tasks allowed NULL titles
-- Duplicate emails inserted
-- Invalid priorities accepted
-- Tasks referencing non-existent projects
+## 3. Invalid Priority
+The database rejected a task with priority 10. This confirms that the `CHECK` constraint restricts task priority to values between 1 and 5.
 
-## Constraints Implemented
+## 4. Invalid Project Reference
+The database rejected a task referencing project ID 999 because that project does not exist. This confirms that the foreign key constraint works correctly.
 
-Explain what constraints were added.
-
-Example:
-- NOT NULL on task title
-- UNIQUE on user email
-- CHECK on task priority
-- FOREIGN KEY on project_id
-
-## Result
-
-Explain how the database now prevents invalid data as the final input.
+## Conclusion
+All four invalid insertions were rejected by the database constraints, confirming that the required database-level validations work as expected.
